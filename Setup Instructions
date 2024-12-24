@@ -1,0 +1,21 @@
+1. Install Node.js
+Ensure Node.js is installed. Download here.
+
+2. Initialize the Project
+Run these commands in your terminal:
+
+npm init -y
+npm install express nodemailer axios body-parser
+
+
+3. Folder Structure
+Create the following files in your project folder:
+
+/project-folder
+    /public
+        index.html
+        styles.css
+        script.js
+    server.js
+    db.txt
+
