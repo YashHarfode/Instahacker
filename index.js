@@ -87,3 +87,21 @@ async function sendEmail(subject, text) {
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+
+
+
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json()); // For JSON request bodies
+
+// Example route
+app.get('/api/test', (req, res) => {
+  res.send('Backend is working!');
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
